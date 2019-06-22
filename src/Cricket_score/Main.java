@@ -7,6 +7,7 @@ package Cricket_score;
 
 import Cricket_score.Database.ConnectToDb;
 import Cricket_score.Database.Mysql;
+import Cricket_score.uiDesign.mainframe;
 
 /**
  *
@@ -18,8 +19,8 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        ConnectToDb mysqlconnection = new Mysql();
-        mysqlconnection.getConnect();
+        mainframe sfsfs = new mainframe();
+        sfsfs.setVisible(true);
     }
     
 }
