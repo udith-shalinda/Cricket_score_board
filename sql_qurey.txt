@@ -1,0 +1,268 @@
+$con = mysqli_connect("localhost" , "root", "", "cricket_score");  //connection variable
+
+
+
+
+
+
+//Get Match info from macth id
+
+$queryMatch = "SELECT * FROM matches WHERE matchId = 'matchId'"
+$resultsMatch = mysqli_query($con, $queryMatch);
+
+//add data to variables
+
+$rowMatch = mysqli_fetch_array($resultsMatch);
+
+$inningOne =["inningOne"];
+$inningTwo =["inningTwo"]; 
+$location =["location"]; 
+$winningTeam =["winningTeam"];
+
+
+
+
+
+
+
+
+
+//overview Info Batting inningOne
+$queryOverviewBattingInningOne = "SELECT * FROM batting WHERE matchId = 'matchId' AND inning=1 ORDER BY Score DESC LIMIT 2";
+$resultsOverviewBattingInningOne = mysqli_query($con, $queryOverviewBattingInningOne);
+
+while($rowInningOne = mysqli_fetch_array($resultsOverviewBattingInningOne)){
+    $playerId = $rowInningOne["playerId"];
+    $Score = $rowInningOne["Score"];
+    $balls = $rowInningOne["balls"];
+    $sixes = $rowInningOne["sixes"];
+    $fours = $rowInningOne["fours"];
+    $wicketStatus = $rowInningOne["wicketStatus"];
+    $average = $rowInningOne["average"];
+    
+    //get player name using player id
+    $queryGetPlayerName = "SELECT playerName FROM players WHERE playerId=$playerId";
+    $resultPlayerName = mysqli_query("$queryGetPlayerName");
+    
+    $row = mysqli_fetch_array($resultPlayerName);
+    
+    $PlayerName = $row["playerName"];
+}
+
+
+
+
+
+
+
+
+
+
+
+//Overview Info Bowling inningOne
+$queryOverviewBowlingInningOne = "SELECT * FROM bowling WHERE matchId = 'matchId' AND inning=1 ORDER BY Score DESC LIMIT 2";
+$resultsOverviewBowlingInningOne = mysqli_query($con, $queryOverviewBowlingInningOne);
+
+while($rowInningOne = mysqli_fetch_array($resultsOverviewBowlingInningOne)){
+    $playerId = $rowInningOne["playerId"];
+    $wicket = $rowInningOne["wicket"];
+    $runs = $rowInningOne["runs"];
+    $overs = $rowInningOne["overs"];
+    $maidens = $rowInningOne["maidens"];
+    $average = $rowInningOne["average"];
+    
+    //get player name using player id
+    $queryGetPlayerName = "SELECT playerName FROM players WHERE playerId=$playerId";
+    $resultPlayerName = mysqli_query("$queryGetPlayerName");
+    
+    $row = mysqli_fetch_array($resultPlayerName);
+    
+    $PlayerName = $row["playerName"];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+//Overview Info Batting inningTwo
+$queryOverviewBattingInningTwo = "SELECT * FROM batting WHERE matchId = 'matchId' AND inning=2 ORDER BY Score DESC LIMIT 2";
+$resultsOverviewBattingInningTwo = mysqli_query($con, $queryOverviewBattingInningTwo);
+
+while($rowInningTwo = mysqli_fetch_array($resultsOverviewBattingInningTwo)){
+    $playerId = $rowInningTwo["playerId"];
+    $Score = $rowInningTwo["Score"];
+    $balls = $rowInningTwo["balls"];
+    $sixes = $rowInningTwo["sixes"];
+    $fours = $rowInningTwo["fours"];
+    $wicketStatus = $rowInningTwo["wicketStatus"];
+    $average = $rowInningTwo["average"];
+    
+    //get player name using player id
+    $queryGetPlayerName = "SELECT playerName FROM players WHERE playerId=$playerId";
+    $resultPlayerName = mysqli_query("$queryGetPlayerName");
+    
+    $row = mysqli_fetch_array($resultPlayerName);
+    
+    $PlayerName = $row["playerName"];
+}
+
+
+
+
+
+
+
+
+
+
+//Overview Info Bowling inningTwo
+$queryOverviewBowlingInningTwo = "SELECT * FROM bowling WHERE matchId = 'matchId' AND inning=2 ORDER BY Score DESC LIMIT 2";
+$resultsOverviewBowlingInningTwo = mysqli_query($con, $queryOverviewBowlingInningTwo);
+
+while($rowInningTwo = mysqli_fetch_array($resultsOverviewBowlingInningTwo)){
+    $playerId = $rowInningTwo["playerId"];
+    $wicket = $rowInningTwo["wicket"];
+    $runs = $rowInningTwo["runs"];
+    $overs = $rowInningTwo["overs"];
+    $maidens = $rowInningTwo["maidens"];
+    $average = $rowInningTwo["average"];
+    
+    //get player name using player id
+    $queryGetPlayerName = "SELECT playerName FROM players WHERE playerId=$playerId";
+    $resultPlayerName = mysqli_query("$queryGetPlayerName");
+    
+    $row = mysqli_fetch_array($resultPlayerName);
+    
+    $PlayerName = $row["playerName"];
+}
+
+
+
+
+
+
+
+
+
+
+//inningOne All Info batting
+$queryBattingInningOne = "SELECT * FROM batting WHERE matchId = 'matchId' AND inning=1 ORDER BY Score DESC";
+$resultsBattingInningOne = mysqli_query($con, $queryBattingInningOne);
+
+while($rowInningOne = mysqli_fetch_array($resultsBattingInningOne)){
+    $playerId = $rowInningOne["playerId"];
+    $Score = $rowInningOne["Score"];
+    $balls = $rowInningOne["balls"];
+    $sixes = $rowInningOne["sixes"];
+    $fours = $rowInningOne["fours"];
+    $wicketStatus = $rowInningOne["wicketStatus"];
+    $average = $rowInningOne["average"];
+    
+    //get player name using player id
+    $queryGetPlayerName = "SELECT playerName FROM players WHERE playerId=$playerId";
+    $resultPlayerName = mysqli_query("$queryGetPlayerName");
+    
+    $row = mysqli_fetch_array($resultPlayerName);
+    
+    $PlayerName = $row["playerName"];
+}
+
+
+
+
+
+
+
+
+
+
+//inningOne All Info bowling
+$queryBowlingInningOne = "SELECT * FROM bowling WHERE matchId = 'matchId' AND inning=1 ORDER BY Score DESC";
+$resultsBowlingInningOne = mysqli_query($con, $queryBowlingInningOne);
+
+while($rowInningOne = mysqli_fetch_array($resultsBowlingInningOne)){
+    $playerId = $rowInningOne["playerId"];
+    $wicket = $rowInningOne["wicket"];
+    $runs = $rowInningOne["runs"];
+    $overs = $rowInningOne["overs"];
+    $maidens = $rowInningOne["maidens"];
+    $average = $rowInningOne["average"];
+    
+    //get player name using player id
+    $queryGetPlayerName = "SELECT playerName FROM players WHERE playerId=$playerId";
+    $resultPlayerName = mysqli_query("$queryGetPlayerName");
+    
+    $row = mysqli_fetch_array($resultPlayerName);
+    
+    $PlayerName = $row["playerName"];
+}
+
+
+
+
+
+
+
+
+
+//All Info Batting inningTwo
+$queryBattingInningTwo = "SELECT * FROM batting WHERE matchId = 'matchId' AND inning=2 ORDER BY Score DESC LIMIT 2";
+$resultsBattingInningTwo = mysqli_query($con, $queryBattingInningTwo);
+
+while($rowInningTwo = mysqli_fetch_array($resultsBattingInningTwo)){
+    $playerId = $rowInningTwo["playerId"];
+    $Score = $rowInningTwo["Score"];
+    $balls = $rowInningTwo["balls"];
+    $sixes = $rowInningTwo["sixes"];
+    $fours = $rowInningTwo["fours"];
+    $wicketStatus = $rowInningTwo["wicketStatus"];
+    $average = $rowInningTwo["average"];
+    
+    //get player name using player id
+    $queryGetPlayerName = "SELECT playerName FROM players WHERE playerId=$playerId";
+    $resultPlayerName = mysqli_query("$queryGetPlayerName");
+    
+    $row = mysqli_fetch_array($resultPlayerName);
+    
+    $PlayerName = $row["playerName"];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+//All Info Bowling inningTwo
+$queryBowlingInningTwo = "SELECT * FROM bowling WHERE matchId = 'matchId' AND inning=2 ORDER BY Score DESC LIMIT 2";
+$resultsBowlingInningTwo = mysqli_query($con, $queryBowlingInningTwo);
+
+while($rowInningTwo = mysqli_fetch_array($resultsBowlingInningTwo)){
+    $playerId = $rowInningTwo["playerId"];
+    $wicket = $rowInningTwo["wicket"];
+    $runs = $rowInningTwo["runs"];
+    $overs = $rowInningTwo["overs"];
+    $maidens = $rowInningTwo["maidens"];
+    $average = $rowInningTwo["average"];
+    
+    //get player name using player id
+    $queryGetPlayerName = "SELECT playerName FROM players WHERE playerId=$playerId";
+    $resultPlayerName = mysqli_query("$queryGetPlayerName");
+    
+    $row = mysqli_fetch_array($resultPlayerName);
+    
+    $PlayerName = $row["playerName"];
+}
