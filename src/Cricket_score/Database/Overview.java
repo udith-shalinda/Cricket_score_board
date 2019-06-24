@@ -17,6 +17,11 @@ import java.util.List;
  * @author udith
  */
 public class Overview {
+    private String matchId;
+    
+    public Overview(String matchId){
+        this.matchId = matchId;
+    }
     
     public String[][] getDetails(){
         
@@ -28,7 +33,7 @@ public class Overview {
             Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/cricket_score","root","");  
             //here sonoo is database name, root is username and password  
             Statement stmt= con.createStatement();  
-            ResultSet rs=stmt.executeQuery("select * from matches where matchId = '1'");  
+            ResultSet rs=stmt.executeQuery("select * from matches where matchId = '"+matchId+"'");  
             while(rs.next()){
                String array[] = {rs.getString("inningOne"),rs.getString("inningTwo"),rs.getString("location"),rs.getString("winningTeam")}; 
                list.add(array);

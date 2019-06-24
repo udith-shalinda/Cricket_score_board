@@ -17,26 +17,66 @@ import java.util.List;
  * @author udith
  */
 public class FirstInnings {
+    private String matchId;
+    
+    public FirstInnings(String matchId){
+        this.matchId = matchId;
+    }
+    
     public String[][] getDetails(){
         List<String[]> list = new ArrayList();
+        int Firstlist;
          
             try{  
             Class.forName("com.mysql.jdbc.Driver"); 
-               System.out.println("about to connect");
             Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/cricket_score","root","");  
             //here sonoo is database name, root is username and password  
             Statement stmt= con.createStatement();  
-            ResultSet rs=stmt.executeQuery("select * from batting where matchId = '1'");  
+            ResultSet rs=stmt.executeQuery("select * from batting where inning = 1 and matchId = '"+ this.matchId +"'");  
             while(rs.next()){
-               String array[] = {rs.getString("fours"),rs.getString("sixes"),rs.getString("wicketStatus"),rs.getString("average")}; 
-               list.add(array);
+                String array[] = {rs.getString("playerId"),rs.getString("Score"),rs.getString("fours"),rs.getString("sixes"),rs.getString("wicketStatus"),rs.getString("average")}; 
+                list.add(array);
             }
+            Firstlist = list.size();
+            for(int i=0;i<list.size();i++){
+                String[] playeradd = list.get(i);
+                ResultSet player = stmt.executeQuery("select * from players where playerId = "+playeradd[0]);
+                while(player.next()){
+                    playeradd[0] = player.getString("playerName");
+                }
+                list.remove(i);
+                list.add(i,playeradd);
+            }
+            String[] array = {"","","","",""};
+            list.add(array);
+            String[] secondHeader = {"Player name", "wickets", "runs","overs","maidens","Avarege"};
+            list.add(secondHeader);
+            //adding second array
+            
+            ResultSet rs1=stmt.executeQuery("select * from bowling where inning = 2 and matchId = '"+this.matchId+"'");   //innin error
+            while(rs1.next()){
+               String array1[] = {rs1.getString("playerId"),rs1.getString("wicket"),rs1.getString("runs"),rs1.getString("overs"),rs1.getString("maidens"),rs1.getString("average")}; 
+               list.add(array1);
+            }
+            for(int i=Firstlist+2;i<list.size();i++){
+                String[] playeradd = list.get(i);
+                ResultSet player = stmt.executeQuery("select * from players where playerId = "+playeradd[0]);
+                while(player.next()){
+                    playeradd[0] = player.getString("playerName");
+                }
+                list.remove(i);
+                list.add(i,playeradd);
+            }
+            
+            
+          
+            
             con.close();  
             }catch(Exception e){ 
                 System.out.println(e);
             } 
             
-            String[][] output = new String[list.size()][4];
+            String[][] output = new String[list.size()][6];
             for(int i=0;i<list.size();i++){
                 output[i] =list.get(i);
             }

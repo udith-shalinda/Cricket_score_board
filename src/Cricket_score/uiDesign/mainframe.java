@@ -27,6 +27,7 @@ public class mainframe extends javax.swing.JFrame {
      */
     public mainframe() {
         initComponents();
+//        jTable1.setVisible(false);
     }
 
     /**
@@ -46,6 +47,7 @@ public class mainframe extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 255, 204));
 
         jButton1.setText("Search");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -63,10 +65,10 @@ public class mainframe extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null}
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1", "Title 2", "Title 3", "Title 4", "sfsfsfs", "fsfsfsfsfs"
             }
         ));
         jScrollPane2.setViewportView(jTable1);
@@ -117,49 +119,49 @@ public class mainframe extends javax.swing.JFrame {
 //        TableColumn c = new TableColumn(1);
 //        c.setHeaderValue("column");
 //        jTable1.getColumnModel().addColumn(c);
-        setTable(jComboBox1.getSelectedItem().toString());
+        setTable(jComboBox1.getSelectedItem().toString(),jTextField1.getText());
         
         //jTable1.addColumn();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
-        setTable(jComboBox1.getSelectedItem().toString());
+        setTable(jComboBox1.getSelectedItem().toString(),jTextField1.getText());
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     
-    void setTable(String category){
+    void setTable(String category,String matchId){
         if("Overview".equals(category)){
-            Overview overview = new Overview();
+            Overview overview = new Overview(matchId);
             String[][] str = overview.getDetails();
 
             jTable1.setModel(new javax.swing.table.DefaultTableModel(
                str,
                 new String [] {
-                    "Title 1", "Title 2", "Title 3", "Title 4"
+                    "Inning One", "Inning Two", "Location", "Won by"
                 }
             ));
         }else if("First Inning".equals(category)){
             TableColumn c = new TableColumn(1);
             c.setHeaderValue("column");
             jTable1.getColumnModel().addColumn(c);
-            FirstInnings firstinning = new FirstInnings();
+            FirstInnings firstinning = new FirstInnings(matchId);
             String[][] str =firstinning.getDetails();
 
             jTable1.setModel(new javax.swing.table.DefaultTableModel(
                str,
                 new String [] {
-                    "Title 13", "Title 23", "Title 33", "Title 43"
+                    "Player Id", "Score", "Balls", "Fours","Sixes","Wicket Status"
                 }
             ));
         }else if("Second Inning".equals(category)){        
-            SecondInnings secondinning = new SecondInnings();
+            SecondInnings secondinning = new SecondInnings(matchId);
             String[][] str =secondinning.getDetails();
 
             jTable1.setModel(new javax.swing.table.DefaultTableModel(
                str,
                 new String [] {
-                    "Title 1", "Title 2", "Title 3", "Title 4"
+                    "Player Id", "Balls", "Fours","Sixes","Wicket Status"
                 }
             ));
         }
