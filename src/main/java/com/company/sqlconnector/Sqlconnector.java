@@ -2,7 +2,7 @@ package com.company.sqlconnector;
 
 import java.sql.*;
 
-public class Sqlconnector implements Connector,Queryrunner{
+public class Sqlconnector implements Connector{
     Connection con;
     ResultSet re;
     Statement st;
@@ -15,7 +15,7 @@ public class Sqlconnector implements Connector,Queryrunner{
     }
 
     @Override
-    public void connect() {
+    public Statement connect() {
 
 
 
@@ -28,17 +28,10 @@ public class Sqlconnector implements Connector,Queryrunner{
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return st;
     }
 
-    public ResultSet runQuery(String sql) {
-        try {
-            re = st.executeQuery(sql);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
-        return re;
-    }
 
     public void close(){
         if (re != null) {

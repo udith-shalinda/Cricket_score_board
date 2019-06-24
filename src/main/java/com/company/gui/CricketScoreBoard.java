@@ -6,14 +6,14 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CricketScoreBoard extends JFrame implements Input{
+public class CricketScoreBoard extends JFrame implements Gui{
     private JPanel rootpane;
     private JPanel westLabelPane;
     private JPanel southTextPane;
     private JPanel east;
     private JTextField textField1;
     private JButton search;
-    public JTextArea textArea1;
+    private JTextArea textArea1;
     private JButton clear;
     private JLabel id;
     private JLabel select;
@@ -26,6 +26,7 @@ public class CricketScoreBoard extends JFrame implements Input{
 
         setTitle("Cricket Score Board");
         setSize(1300,750);
+        setVisible(true);
 
 
         search.addActionListener(new ActionListener() {
@@ -43,12 +44,16 @@ public class CricketScoreBoard extends JFrame implements Input{
         });
     }
 
-    public String getMatchId() {
-        return textField1.getText();
+    public JTextField getMatchId() {
+        return textField1;
     }
 
-    public String getSelection() {
-        return (String) Selection.getSelectedItem();
+    public JComboBox getSelection() {
+        return  Selection;
+    }
+
+    public JTextArea getTextArea() {
+        return textArea1;
     }
 
 

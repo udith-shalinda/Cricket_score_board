@@ -1,6 +1,8 @@
 package com.company.sqlconnector;
 
+import java.sql.Statement;
+
 public interface Connector {
-    public void connect();
+    public Statement connect();
     public void close();
 }
