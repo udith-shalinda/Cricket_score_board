@@ -117,20 +117,20 @@ public class mainframe extends javax.swing.JFrame {
 //        TableColumn c = new TableColumn(1);
 //        c.setHeaderValue("column");
 //        jTable1.getColumnModel().addColumn(c);
-        setTable(jComboBox1.getSelectedItem().toString());
+        setTable(jComboBox1.getSelectedItem().toString(),jTextField1.getText());
         
         //jTable1.addColumn();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
-        setTable(jComboBox1.getSelectedItem().toString());
+        setTable(jComboBox1.getSelectedItem().toString(),jTextField1.getText());
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     
-    void setTable(String category){
+    void setTable(String category,String matchId){
         if("Overview".equals(category)){
-            Overview overview = new Overview("1");
+            Overview overview = new Overview(matchId);
             String[][] str = overview.getDetails();
 
             jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -143,7 +143,7 @@ public class mainframe extends javax.swing.JFrame {
             TableColumn c = new TableColumn(1);
             c.setHeaderValue("column");
             jTable1.getColumnModel().addColumn(c);
-            FirstInnings firstinning = new FirstInnings("1");
+            FirstInnings firstinning = new FirstInnings(matchId);
             String[][] str =firstinning.getDetails();
 
             jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -153,7 +153,7 @@ public class mainframe extends javax.swing.JFrame {
                 }
             ));
         }else if("Second Inning".equals(category)){        
-            SecondInnings secondinning = new SecondInnings("1");
+            SecondInnings secondinning = new SecondInnings(matchId);
             String[][] str =secondinning.getDetails();
 
             jTable1.setModel(new javax.swing.table.DefaultTableModel(
